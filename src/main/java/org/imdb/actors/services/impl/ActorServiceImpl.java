@@ -28,7 +28,7 @@ public class ActorServiceImpl implements ActorService {
     public ActorModel addActor(final ActorModel model) {
         log.info("Create actor BEGIN: {}", model);
 
-        final Actor entity = actorConverter.convertToActor(model);
+        final Actor entity = actorConverter.convertToEntity(model);
         final Actor actor = actorRepository.save(entity);
         final ActorModel created = actorConverter.convertToModel(actor);
 
@@ -57,7 +57,7 @@ public class ActorServiceImpl implements ActorService {
             throw new HttpBadRequestException("Car entity does not exist for id: " + model.getId());
         }
 
-        final Actor actor = actorConverter.convertToActor(model);
+        final Actor actor = actorConverter.convertToEntity(model);
 
         final ActorModel updated = actorConverter.convertToModel(actorRepository.save(actor));
 

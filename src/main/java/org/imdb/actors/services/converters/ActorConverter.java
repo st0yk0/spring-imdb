@@ -25,7 +25,7 @@ public class ActorConverter {
         return model;
     }
 
-    public Actor convertToActor(final ActorModel model){
+    public Actor convertToEntity(final ActorModel model){
         if(model == null){
             return null;
         }
