@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.awt.image.BufferedImage;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import static org.imdb.constants.Constants.UUID_SIZE;
 
@@ -32,18 +33,21 @@ public class Movie {
     @Column(nullable = false)
     private double rating;
 
-    @ElementCollection
-    @Column(nullable = false )
-    private List<Actor> actorList;
 
     @Column(nullable = false)
     private String genre;
 
     @Column
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] picture;
+    private String picture;
 
     @Column
     private String youtubeURL;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "movie_actors",
+            joinColumns = {@JoinColumn(name = "movie_id", nullable = false,
+                    foreignKey = @ForeignKey(name = "fk_movie_actors_movie"))},
+            inverseJoinColumns = {@JoinColumn(name = "movie_actor_id", nullable = false,
+                    foreignKey = @ForeignKey(name = "fk_movie_actors_actors"))})
+    private List<Actor> actorList;
 }

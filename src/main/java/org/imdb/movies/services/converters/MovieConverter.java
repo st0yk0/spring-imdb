@@ -25,7 +25,7 @@ public class MovieConverter {
         model.setRating(movie.getRating());
         model.setActorList(movie.getActorList());
         model.setGenre(movie.getGenre());
-       // model.setPicture(movie.getPicture());
+        model.setPicture(movie.getPicture());
         model.setYoutubeURL(movie.getYoutubeURL());
 
         return model;
@@ -43,7 +43,7 @@ public class MovieConverter {
         movie.setRating(model.getRating());
         movie.setActorList(model.getActorList());
         movie.setGenre(model.getGenre());
-        //movie.setPicture(model.getPicture());
+        movie.setPicture(model.getPicture());
         movie.setYoutubeURL(model.getYoutubeURL());
 
         return movie;

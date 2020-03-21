@@ -19,6 +19,6 @@ public class MovieModel {
     private double rating;
     private List<Actor> actorList;
     private String genre;
-    //private byte[] picture;
+    private String picture;
     private String youtubeURL;
 }
