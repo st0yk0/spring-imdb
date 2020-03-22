@@ -14,6 +14,7 @@ import org.imdb.movies.services.converters.MovieConverter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Log4j2
@@ -84,6 +85,22 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    public MovieModel getById(String id) {
+        log.info("Get movie by id BEGIN: {}", id);
+
+        final Optional<Movie> movieOpt = movieRepository.findById(id);
+
+        MovieModel movie = null;
+        if (movieOpt.isPresent()) {
+            movie = movieConverter.convertToModel(movieOpt.get());
+        }
+
+        log.info("Get movie by id END: {} {}", id, movie);
+
+        return movie;
+    }
+
+    @Override
     public void deleteMovie(String id) {
         log.info("Delete movie by id BEGIN: {}", id);
 
@@ -91,4 +108,6 @@ public class MovieServiceImpl implements MovieService {
 
         log.info("Delete movie by id END: {}", id);
     }
+
+
 }

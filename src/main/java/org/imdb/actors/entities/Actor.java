@@ -1,6 +1,8 @@
 package org.imdb.actors.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import javax.persistence.*;
 import static org.imdb.constants.Constants.UUID_SIZE;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(uniqueConstraints= {
         @UniqueConstraint(columnNames = {"first_name", "last_name"})
