@@ -3,6 +3,7 @@ package org.imdb.movies.entities;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.imdb.actors.entities.Actor;
+import org.imdb.users.entities.User;
 
 import javax.persistence.*;
 
@@ -39,6 +40,11 @@ public class Movie {
 
     @Column
     private String picture;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_movies_users"))
+    private User user;
 
     @Column
     private String youtubeURL;

@@ -2,6 +2,7 @@ package org.imdb.movies.services.converters;
 
 import org.imdb.movies.entities.Movie;
 import org.imdb.movies.models.MovieModel;
+import org.imdb.users.services.converters.UserConverter;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,6 +13,12 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 public class MovieConverter {
+    private final UserConverter userConverter;
+
+    public MovieConverter(UserConverter userConverter) {
+        this.userConverter = userConverter;
+    }
+
 
     public MovieModel convertToModel(final Movie movie){
         if (movie == null) {
@@ -26,6 +33,7 @@ public class MovieConverter {
         model.setActorList(movie.getActorList());
         model.setGenre(movie.getGenre());
         model.setPicture(movie.getPicture());
+        model.setUser(userConverter.convertToModel(movie.getUser()));
         model.setYoutubeURL(movie.getYoutubeURL());
 
         return model;
@@ -42,6 +50,7 @@ public class MovieConverter {
         movie.setYear(model.getYear());
         movie.setRating(model.getRating());
         movie.setActorList(model.getActorList());
+        movie.setUser(userConverter.convertToEntity(model.getUser()));
         movie.setGenre(model.getGenre());
         movie.setPicture(model.getPicture());
         movie.setYoutubeURL(model.getYoutubeURL());

@@ -5,6 +5,10 @@ import org.imdb.actors.models.ActorModel;
 import org.imdb.actors.services.converters.ActorConverter;
 import org.imdb.movies.models.MovieModel;
 import org.imdb.movies.services.MovieService;
+import org.imdb.users.entities.User;
+import org.imdb.users.model.UserModel;
+import org.imdb.users.services.UserService;
+import org.imdb.users.services.converters.UserConverter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +31,12 @@ public class TestMovieService {
     @Autowired
     private MovieService movieService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserConverter userConverter;
+
     @Test
     public void createMovie(){
         final MovieModel movie = fillMovieData();
@@ -38,6 +48,7 @@ public class TestMovieService {
         assertEquals(movie.getRating(), created.getRating(), 0);
         assertEquals(movie.getActorList(), created.getActorList());
         assertEquals(movie.getGenre(), created.getGenre());
+        assertEquals(movie.getUser().getId(), created.getUser().getId());
         assertEquals(movie.getPicture(), created.getPicture());
         assertEquals(movie.getYoutubeURL(), created.getYoutubeURL());
 
@@ -65,7 +76,10 @@ public class TestMovieService {
         final List<Actor> actorList = new ArrayList<>();
         actorList.add(actor);
 
+        final UserModel user = new UserModel(null, "Joro", "52852", "Joro", "Tornev");
+        final UserModel createdUser = userService.registerUser(user);
 
+        System.out.println("createdUser = " + createdUser.toString());
 
         final MovieModel movie = new MovieModel();
 
@@ -73,6 +87,7 @@ public class TestMovieService {
         movie.setYear(2019);
         movie.setRating(4.0);
         movie.setActorList(actorList);
+        movie.setUser(createdUser);
         movie.setGenre("animation");
         movie.setPicture("somePicturePath");
         movie.setYoutubeURL("someYoutubeURL");
