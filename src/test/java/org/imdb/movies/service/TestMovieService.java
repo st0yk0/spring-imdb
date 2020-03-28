@@ -1,11 +1,8 @@
 package org.imdb.movies.service;
 
 import org.imdb.actors.entities.Actor;
-import org.imdb.actors.models.ActorModel;
-import org.imdb.actors.services.converters.ActorConverter;
 import org.imdb.movies.models.MovieModel;
 import org.imdb.movies.services.MovieService;
-import org.imdb.users.entities.User;
 import org.imdb.users.model.UserModel;
 import org.imdb.users.services.UserService;
 import org.imdb.users.services.converters.UserConverter;

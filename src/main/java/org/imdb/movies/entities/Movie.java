@@ -7,10 +7,7 @@ import org.imdb.users.entities.User;
 
 import javax.persistence.*;
 
-import java.awt.image.BufferedImage;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import static org.imdb.constants.Constants.UUID_SIZE;
 

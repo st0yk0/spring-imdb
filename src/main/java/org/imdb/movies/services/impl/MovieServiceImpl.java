@@ -3,7 +3,6 @@ package org.imdb.movies.services.impl;
 import lombok.extern.log4j.Log4j2;
 import org.imdb.actors.entities.Actor;
 import org.imdb.actors.entities.ActorRepository;
-import org.imdb.actors.models.ActorModel;
 import org.imdb.actors.services.converters.ActorConverter;
 import org.imdb.exceptions.HttpBadRequestException;
 import org.imdb.movies.entities.Movie;

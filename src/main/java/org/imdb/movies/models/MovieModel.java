@@ -4,10 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.imdb.actors.entities.Actor;
-import org.imdb.users.entities.User;
 import org.imdb.users.model.UserModel;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 @Data

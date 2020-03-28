@@ -1,6 +1,5 @@
 package org.imdb.movies.rest;
 
-import org.imdb.actors.models.ActorModel;
 import org.imdb.movies.models.MovieModel;
 import org.imdb.movies.services.MovieService;
 import org.springframework.web.bind.annotation.*;
