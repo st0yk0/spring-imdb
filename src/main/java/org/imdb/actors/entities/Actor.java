@@ -13,9 +13,7 @@ import static org.imdb.constants.Constants.UUID_SIZE;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(uniqueConstraints= {
-        @UniqueConstraint(columnNames = {"first_name", "last_name"})
-}, name = "actors")
+@Table(name = "actors")
 public class Actor {
 
     @Id
@@ -25,9 +23,6 @@ public class Actor {
     private String id;
 
     @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name" ,  nullable = false)
-    private String lastName;
+    private String name;
 
 }

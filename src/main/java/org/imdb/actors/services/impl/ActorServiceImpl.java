@@ -10,6 +10,7 @@ import org.imdb.exceptions.HttpBadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Log4j2
@@ -74,4 +75,37 @@ public class ActorServiceImpl implements ActorService {
         log.info("Delete actor by id END: {}", id);
 
     }
+    @Override
+    public Actor create(final String name) {
+        log.info("Create actor string BEGIN: {}", name);
+
+        if (name == null) {
+            return null;
+        }
+
+        final Actor actorEntity = actorConverter.convertToEntity(name);
+        final Actor created = actorRepository.save(actorEntity);
+
+        log.info("Create actor string END: {}", created);
+
+        return created;
+    }
+
+    @Override
+    public Actor getByName(String name) {
+        log.info("Get actor by name BEGIN: {}", name);
+
+        if (name == null) {
+            return null;
+        }
+
+        final Optional<Actor> actorOpt = actorRepository.findByName(name);
+        final Actor actor = actorOpt.orElse(null);
+
+        log.info("Get actor by name BEGIN: {}", actor);
+
+        return actor;
+    }
+
+
 }

@@ -11,9 +11,11 @@ import java.util.List;
 public class MovieController {
 
     private final MovieService movieService;
+    private final MovieAccessValidator movieAccessValidator;
 
-    public MovieController(MovieService movieService) {
+    public MovieController(MovieService movieService, MovieAccessValidator movieAccessValidator) {
         this.movieService = movieService;
+        this.movieAccessValidator = movieAccessValidator;
     }
 
     @PostMapping
@@ -31,8 +33,10 @@ public class MovieController {
         return movieService.updateMovie(movie);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteMovie(@PathVariable final String id) {
+    @DeleteMapping("/{id}/{userId}")
+    public void deleteMovie(@PathVariable final String id, @PathVariable final String userId) {
+        movieAccessValidator.validateUserCanEditMovie(userId, id);
+
         movieService.deleteMovie(id);
     }
 }

@@ -69,7 +69,7 @@ public class TestMovieService {
 
     private MovieModel fillMovieData(){
 
-        final Actor actor = new Actor(null, "Stefan", "Ryadkov");
+        final Actor actor = new Actor(null, "Stefan Ryadkov");
         final List<Actor> actorList = new ArrayList<>();
         actorList.add(actor);
 
@@ -83,7 +83,7 @@ public class TestMovieService {
         movie.setName("Toy Story");
         movie.setYear(2019);
         movie.setRating(4.0);
-        movie.setActorList(actorList);
+        movie.setActorList(actor.getName());
         movie.setUser(createdUser);
         movie.setGenre("animation");
         movie.setPicture("somePicturePath");

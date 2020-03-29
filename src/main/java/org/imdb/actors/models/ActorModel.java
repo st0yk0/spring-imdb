@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class ActorModel {
 
     private String id;
-    private String firstName;
-    private String lastName;
+    private String name;
 }

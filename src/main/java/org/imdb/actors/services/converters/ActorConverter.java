@@ -19,10 +19,17 @@ public class ActorConverter {
 
         final ActorModel model = new ActorModel();
         model.setId(actor.getId());
-        model.setFirstName(actor.getFirstName());
-        model.setLastName(actor.getLastName());
+        model.setName(actor.getName());
 
         return model;
+    }
+
+    public Actor convertToEntity(final String name) {
+        if (name == null) {
+            return null;
+        }
+
+        return new Actor(null, name);
     }
 
     public Actor convertToEntity(final ActorModel model){
@@ -32,8 +39,7 @@ public class ActorConverter {
 
         final Actor actor = new Actor();
         actor.setId(model.getId());
-        actor.setFirstName(model.getFirstName());
-        actor.setLastName(model.getLastName());
+        actor.setName(model.getName());
 
         return actor;
     }

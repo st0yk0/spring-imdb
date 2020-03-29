@@ -1,7 +1,6 @@
 package org.imdb.movies.services.impl;
 
 import lombok.extern.log4j.Log4j2;
-import org.imdb.actors.entities.Actor;
 import org.imdb.actors.entities.ActorRepository;
 import org.imdb.actors.services.converters.ActorConverter;
 import org.imdb.exceptions.HttpBadRequestException;
@@ -21,31 +20,16 @@ public class MovieServiceImpl implements MovieService {
 
     private final MovieRepository movieRepository;
     private final MovieConverter movieConverter;
-    private final ActorRepository actorRepository;
-    private final ActorConverter actorConverter;
 
-    public MovieServiceImpl(MovieRepository movieRepository, MovieConverter movieConverter, ActorRepository actorRepository, ActorConverter actorConverter) {
+    public MovieServiceImpl(MovieRepository movieRepository, MovieConverter movieConverter) {
         this.movieRepository = movieRepository;
         this.movieConverter = movieConverter;
-        this.actorRepository = actorRepository;
-        this.actorConverter = actorConverter;
     }
 
     @Override
     public MovieModel addMovie(MovieModel model) {
         log.info("Create movie BEGIN: {}", model);
-
         final Movie entity = movieConverter.convertToEntity(model);
-
-        log.info("Create actor in movies BEGIN: {}", entity.getActorList());
-
-        List<Actor> actors = entity.getActorList();
-        actors.forEach((actor) -> {
-            Actor actorFromMovie = actorRepository.save(actor);
-            actor.setId(actorFromMovie.getId());
-        });
-
-        log.info("Create actor in movies END: {}", entity.getActorList());
 
         final Movie movie = movieRepository.save(entity);
         final MovieModel created = movieConverter.convertToModel(movie);
@@ -70,7 +54,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public MovieModel updateMovie(MovieModel model) {
         log.info("Update movie BEGIN: {}", model);
-
+        System.out.println("UPDATE! model = " + model);
         if (!movieRepository.existsById(model.getId())) {
             throw new HttpBadRequestException("Movie entity does not exist for id: " + model.getId());
         }
